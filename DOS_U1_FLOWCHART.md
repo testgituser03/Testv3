@@ -1,7 +1,7 @@
 
 # Flowchart U1
 
-'''
+```
 flowchart TD
     A[Distributed Operating System]
     A --> B[Introduction to Distributed Systems]
@@ -153,4 +153,4 @@ flowchart TD
     N --> N5[Scalability]
     N5 --> N51["Challenges in large groups"]
     
-'''
+```

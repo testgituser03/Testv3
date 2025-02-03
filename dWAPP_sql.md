@@ -1,21 +1,30 @@
-
-```sql
--- 1. Connect to MySQL as root user
+### 1. Connect to MySQL as Root User
+```bash
 mysql -u root -p
+```
 
--- 2. Create Database
--- Create database
+---
+
+### 2. Create Database
+#### Create Database
+```sql
 CREATE DATABASE IF NOT EXISTS bWAPP;
 USE bWAPP;
+```
 
--- Create user (match credentials in config.inc.php)
+#### Create User and Grant Privileges
+```sql
 CREATE USER 'bwapp_user'@'localhost' IDENTIFIED BY 'bug';
 GRANT ALL PRIVILEGES ON bWAPP.* TO 'bwapp_user'@'localhost';
 FLUSH PRIVILEGES;
+```
 
--- 3. Create Tables
+---
 
--- Users table
+### 3. Create Tables
+
+#### Users Table
+```sql
 CREATE TABLE IF NOT EXISTS users (
     id INT(10) NOT NULL AUTO_INCREMENT,
     login VARCHAR(100) DEFAULT NULL,
@@ -28,8 +37,10 @@ CREATE TABLE IF NOT EXISTS users (
     admin TINYINT(1) DEFAULT '0',
     PRIMARY KEY (id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+```
 
--- Blog table
+#### Blog Table
+```sql
 CREATE TABLE IF NOT EXISTS blog (
     id INT(10) NOT NULL AUTO_INCREMENT,
     owner VARCHAR(100) DEFAULT NULL,
@@ -37,8 +48,10 @@ CREATE TABLE IF NOT EXISTS blog (
     date DATETIME DEFAULT NULL,
     PRIMARY KEY (id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+```
 
--- Visitors table
+#### Visitors Table
+```sql
 CREATE TABLE IF NOT EXISTS visitors (
     id INT(10) NOT NULL AUTO_INCREMENT,
     ip_address VARCHAR(50) DEFAULT NULL,
@@ -46,8 +59,10 @@ CREATE TABLE IF NOT EXISTS visitors (
     date DATETIME DEFAULT NULL,
     PRIMARY KEY (id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+```
 
--- Movies table
+#### Movies Table
+```sql
 CREATE TABLE IF NOT EXISTS movies (
     id INT(10) NOT NULL AUTO_INCREMENT,
     title VARCHAR(100) DEFAULT NULL,
@@ -58,8 +73,10 @@ CREATE TABLE IF NOT EXISTS movies (
     tickets_stock INT(10) DEFAULT NULL,
     PRIMARY KEY (id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+```
 
--- Heroes table
+#### Heroes Table
+```sql
 CREATE TABLE IF NOT EXISTS heroes (
     id INT(10) NOT NULL AUTO_INCREMENT,
     login VARCHAR(100) DEFAULT NULL,
@@ -67,15 +84,21 @@ CREATE TABLE IF NOT EXISTS heroes (
     secret VARCHAR(100) DEFAULT NULL,
     PRIMARY KEY (id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+```
 
--- 4. Insert Initial Data
+---
 
--- Users
+### 4. Insert Initial Data
+
+#### Insert Users Data
+```sql
 INSERT INTO users (login, password, email, secret, admin) VALUES
 ('A.I.M.', '6885858486f31043e5839c735d99457f045affd0', 'bwapp-aim@mailinator.com', 'A.I.M. or Authentication Is Missing', 1),
 ('bee', '6885858486f31043e5839c735d99457f045affd0', 'bwapp-bee@mailinator.com', 'Any bugs?', 1);
+```
 
--- Movies
+#### Insert Movies Data
+```sql
 INSERT INTO movies (title, release_year, genre, main_character, imdb, tickets_stock) VALUES
 ('G.I. Joe: Retaliation', '2013', 'action', 'Cobra Commander', 'tt1583421', 100),
 ('Iron Man', '2008', 'action', 'Tony Stark', 'tt0371746', 53),
@@ -87,8 +110,10 @@ INSERT INTO movies (title, release_year, genre, main_character, imdb, tickets_st
 ('The Fast and the Furious', '2001', 'action', 'Brian O\'Connor', 'tt0232500', 40),
 ('The Incredible Hulk', '2008', 'action', 'Bruce Banner', 'tt0800080', 23),
 ('World War Z', '2013', 'horror', 'Gerry Lane', 'tt0816711', 0);
+```
 
--- Heroes
+#### Insert Heroes Data
+```sql
 INSERT INTO heroes (login, password, secret) VALUES
 ('neo', 'trinity', 'Oh why didn\'t I took that BLACK pill?'),
 ('alice', 'loveZombies', 'There\'s a cure!'),
@@ -96,9 +121,25 @@ INSERT INTO heroes (login, password, secret) VALUES
 ('wolverine', 'Log@N', 'What\'s a Magneto?'),
 ('johnny', 'm3ph1st0ph3l3s', 'I\'m the Ghost Rider!'),
 ('seline', 'm00n', 'It wasn\'t the Lycans. It was you.');
+```
 
--- 5. Verify Installation
+---
+
+### 5. Verify Installation
+
+#### Show Tables
+```sql
 SHOW TABLES;
+```
+
+#### Select All from Users
+```sql
 SELECT * FROM users;
+```
+
+#### Count Movies
+```sql
 SELECT COUNT(*) FROM movies;
 ```
+
+---
